@@ -69,15 +69,15 @@ class ColoredConsoleFormatter extends LineFormatter
     ];
 
     /**
-     *
+     * Foreground color
      */
     const COLOR_FOREGROUND = 'foreground';
     /**
-     *
+     * Background color
      */
     const COLOR_BACKGROUND = 'background';
     /**
-     *
+     * Options, like bold, underline...
      */
     const OPTIONS = 'options';
 
@@ -100,6 +100,7 @@ class ColoredConsoleFormatter extends LineFormatter
     }
 
     /**
+     * Checks whether provided foreground color is valid
      * @param null $color
      * @throws \InvalidArgumentException
      */
@@ -118,6 +119,7 @@ class ColoredConsoleFormatter extends LineFormatter
     }
 
     /**
+     * Checks whether provided background color is valid
      * @param null $color
      * @throws \InvalidArgumentException
      */
@@ -136,6 +138,7 @@ class ColoredConsoleFormatter extends LineFormatter
     }
 
     /**
+     * Checks whether provided option is valid
      * @param $option
      * @throws \InvalidArgumentException
      */
@@ -152,7 +155,7 @@ class ColoredConsoleFormatter extends LineFormatter
     }
 
     /**
-     * Sets multiple style options at once.
+     * Checks whether provided options are valid
      *
      * @param array $options
      */
