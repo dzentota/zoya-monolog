@@ -1,0 +1,27 @@
+{
+    "name": "zoya/monolog",
+    "description": "Formatter for monolog logger",
+    "authors": [
+        {
+            "name": "Alexander Tatulchenkov",
+            "email": "webtota@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "Zoya": "src/"
+        },
+        "files": ["src/bootstrap.php"]
+    },
+    "require": {
+        "php": ">=5.4",
+        "beberlei/assert": "@stable",
+        "psr/log": "~1.0",
+	"monolog/monolog": "~1.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    }
+    
+}
