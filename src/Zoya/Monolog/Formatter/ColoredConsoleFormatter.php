@@ -56,10 +56,22 @@ class ColoredConsoleFormatter extends LineFormatter
         Logger::DEBUG => [self::COLOR_FOREGROUND => 'white', self::COLOR_BACKGROUND => 'cyan', self::OPTIONS => []],
         Logger::INFO => [self::COLOR_FOREGROUND => 'green', self::COLOR_BACKGROUND => null, self::OPTIONS => []],
         Logger::NOTICE => [self::COLOR_FOREGROUND => 'yellow', self::COLOR_BACKGROUND => null, self::OPTIONS => []],
-        Logger::WARNING => [self::COLOR_FOREGROUND => 'yellow', self::COLOR_BACKGROUND => null, self::OPTIONS => ['bold']],
+        Logger::WARNING => [
+            self::COLOR_FOREGROUND => 'yellow',
+            self::COLOR_BACKGROUND => null,
+            self::OPTIONS => ['bold']
+        ],
         Logger::ERROR => [self::COLOR_FOREGROUND => 'white', self::COLOR_BACKGROUND => 'red', self::OPTIONS => []],
-        Logger::CRITICAL => [self::COLOR_FOREGROUND => 'white', self::COLOR_BACKGROUND => 'red', self::OPTIONS => ['bold']],
-        Logger::ALERT => [self::COLOR_FOREGROUND => 'white', self::COLOR_BACKGROUND => 'red', self::OPTIONS => ['bold']],
+        Logger::CRITICAL => [
+            self::COLOR_FOREGROUND => 'white',
+            self::COLOR_BACKGROUND => 'red',
+            self::OPTIONS => ['bold']
+        ],
+        Logger::ALERT => [
+            self::COLOR_FOREGROUND => 'white',
+            self::COLOR_BACKGROUND => 'red',
+            self::OPTIONS => ['bold']
+        ],
         Logger::EMERGENCY => [
             self::COLOR_FOREGROUND => 'white',
             self::COLOR_BACKGROUND => 'red',
@@ -95,6 +107,9 @@ class ColoredConsoleFormatter extends LineFormatter
     ) {
         if (null !== $colorsMap) {
             $this->colorsMap = array_merge($this->colorsMap, $colorsMap);
+        }
+        if (is_null($format)) {
+            $format = "%channel%: %message% [%datetime%] \n";
         }
         parent::__construct($format, $dateFormat, $allowInlineLineBreaks);
     }
@@ -209,7 +224,13 @@ class ColoredConsoleFormatter extends LineFormatter
         if (0 === count($setCodes)) {
             return $output;
         }
-        return sprintf("\033[%sm%s\033[%sm", implode(';', $setCodes), $output, implode(';', $unsetCodes));
+        return sprintf(
+            "\033[%sm%s\033[%sm ",
+            implode(';', $setCodes),
+            "[{$record['level_name']}]",
+            implode(';', $unsetCodes)
+        ) . $output;
     }
 
 }
+
